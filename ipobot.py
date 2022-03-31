@@ -69,6 +69,7 @@ class MeroShare:
         sleep(2)
         self.driver.find_element(
             By.XPATH, '/html/body/app-dashboard/header/div[2]/div/div/div/ul/li[1]/a/i').click()
+        
 
 
 class CheckResult:
