@@ -11,4 +11,13 @@ pip install selenium
 ### Input Data
 
 - Create data.json file 
-- 
+- Copy the Example.json file and input the data 
+
+*Warning: Do Not Share Or Post Your JSON File in any public repo*
+
+## Run
+### To check if IPO is alloted or not
+- python3 check_all.py 
+
+### To apply IPO on all given account
+- python3 apply_all.py
