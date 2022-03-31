@@ -22,8 +22,10 @@ for i in range(len(data)):
         meroshare.apply_ipo(APPLIED_KITTA, user["CRN"])
         # Enter the transaction PIN
         meroshare.enter_pin(user["PIN"])
+        print(f"{user['Name']: Applied}")
         # Logout
         meroshare.logout()
+        
     except:
         print(f"Error on {user['Name']}")
 
