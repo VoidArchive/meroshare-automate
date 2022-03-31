@@ -14,10 +14,15 @@ data = json.load(file)
 for i in range(len(data)): 
     try:
         user = data[i] 
+        # Login 
         meroshare.login(user["DP"],user["Username"], user["Password"])
+        # Go to My ASBA and click apply on the first IPO
         meroshare.find_ipo()
-        # meroshare.apply_ipo(APPLIED_KITTA, data.crn)
-        # meroshare.enter_pin(data.pin)
+        # Fill the IPO Form and click proceed
+        meroshare.apply_ipo(APPLIED_KITTA, user["CRN"])
+        # Enter the transaction PIN
+        meroshare.enter_pin(user["PIN"])
+        # Logout
         meroshare.logout()
     except:
         print(f"Error on {user['Name']}")
