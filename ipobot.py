@@ -70,15 +70,3 @@ class MeroShare:
         self.driver.find_element(
             By.XPATH, '/html/body/app-dashboard/header/div[2]/div/div/div/ul/li[1]/a/i').click()
         
-
-
-class CheckResult:
-    def __init__(self) -> None:
-        s = Service('/home/voidarchive/chromedriver_linux64/chromedriver')
-        self.driver = webdriver.Chrome(service=s)
-        self.driver.maximize_window()
-
-    def find_result(self, boid):
-        self.driver.get("https://iporesult.cdsc.com.np/")
-        sleep(1)
-        self.driver.find_element()
