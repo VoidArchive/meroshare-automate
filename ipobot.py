@@ -53,8 +53,7 @@ class MeroShare:
         self.driver.find_element(By.ID, 'disclaimer').click()
 
         sleep(2)
-        self.driver.find_element(
-            By.XPATH, '//*[@id="main"]/div/app-edit/div/div/wizard/div/wizard-step[1]/form/div[2]/div/div[4]/div[2]/div/button[1]/span').click()
+        self.driver.find_element(By.XPATH, '//*[@id="main"]/div/app-issue/div/wizard/div/wizard-step[1]/form/div[2]/div/div[5]/div[2]/div/button[1]').click()
 
     def enter_pin(self, transaction_password):
         sleep(1)

@@ -1,21 +1,11 @@
 [
     {
-        "Name": "XXXX XXXX",
-        "DP": "XXX XXX XXX XXX XXX",
-        "Username": "XXXXXXXX",
-        "Password": "XXXXXXXXX",
-        "CRN": "XXXXXXX",
-        "BOID": "XXXXXXXXXXXXXXXX",
-        "PIN": "XXXX"
-    },
-    {
-        "Name": "XXXX XXXX",
-        "DP": "XXX XXX XXX XXX XXX",
-        "Username": "XXXXXXXX",
-        "Password": "XXXXXXXXX",
-        "CRN": "XXXXXXX",
-        "BOID": "XXXXXXXXXXXXXXXX",
+        "Name": "XXX XXXX",
+        "DP": "XXX XXX XXX (XXXXX)",
+        "Username": "XXXXX",
+        "Password": "XXXXXX",
+        "CRN": "XXXXXX",
+        "BOID": "XXXXX",
         "PIN": "XXXX"
     }
-    
 ]
