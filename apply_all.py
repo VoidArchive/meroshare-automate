@@ -22,7 +22,7 @@ for i in range(len(data)):
         # Fill the IPO Form and click proceed
         meroshare.apply_ipo(APPLIED_KITTA, user["CRN"])
         # Enter the transaction PIN
-        print(f"{user['Name']: Applied}")
+        
         meroshare.enter_pin(user["PIN"])
         # Logout
         meroshare.logout()

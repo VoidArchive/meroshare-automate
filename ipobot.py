@@ -1,3 +1,4 @@
+from os import stat
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -68,4 +69,16 @@ class MeroShare:
         sleep(2)
         self.driver.find_element(
             By.XPATH, '/html/body/app-dashboard/header/div[2]/div/div/div/ul/li[1]/a/i').click()
-        
+    
+    def check_ipo(self):
+        sleep(1)
+        self.driver.get('https://meroshare.cdsc.com.np/#/asba')
+        self.driver.find_element(By.XPATH, '//*[@id="main"]/div/app-asba/div/div[1]/div/div/ul/li[3]/a/span').click()
+        sleep(1)
+        self.driver.find_element(By.XPATH,'//*[@id="main"]/div/app-asba/div/div[2]/app-share-list/div/div/div[2]/div[1]/div[1]/div/div[2]/div/div[3]/button').click()
+
+    def get_result(self):
+        sleep(1)
+        company_name = self.driver.find_element(By.XPATH,'//*[@id="main"]/div/app-application-report/div/div[2]/div/div[1]/div/div/div/div/div/span[1]').text    
+        status = self.driver.find_element(By.XPATH,'//*[@id="main"]/div/app-application-report/div/div[2]/div/div[3]/div/div[1]/div[7]/div/div/div[2]/div/label').text
+        print(f'{company_name} --> {status}')
