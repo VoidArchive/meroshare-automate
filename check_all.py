@@ -1,3 +1,4 @@
+from cgitb import reset
 from ipobot import MeroShare
 import json
 
@@ -12,11 +13,27 @@ file = open("data.json")
 data = json.load(file)
 
 
-user = data[2] 
-# Login 
-meroshare.login(user["DP"],user["Username"], user["Password"])
+result = []
+for i in range(len(data)):
+    user = data[i]
+    # Login
+    meroshare.login(user["DP"], user["Username"], user["Password"])
 
-# Fill the IPO Form and click proceed
-meroshare.check_ipo()
-meroshare.get_result()
-# Logout
+    # Fill the IPO Form and click proceed
+    meroshare.check_ipo(1)
+    result += meroshare.get_result()
+
+    # Logout
+    meroshare.logout()
+
+print(result)
+
+# user = data[1]
+# # Login
+# meroshare.login(user["DP"], user["Username"], user["Password"])
+
+# # Fill the IPO Form and click proceed
+# meroshare.check_ipo(1)
+# result = meroshare.get_result()
+
+
