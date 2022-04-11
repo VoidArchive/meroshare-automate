@@ -19,3 +19,10 @@ pip install selenium
 
 ### To apply IPO on all given account
 - python3 apply_all.py
+
+
+### To check all IPO
+
+-python3 check_all.py
+
+The script check using row_no, That can be changed according to the number.

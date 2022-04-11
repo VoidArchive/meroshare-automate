@@ -73,8 +73,8 @@ class MeroShare:
 
     def get_result(self):
         sleep(1)
-        company_name = self.driver.find_element(
-            By.XPATH, '//*[@id="main"]/div/app-application-report/div/div[2]/div/div[1]/div/div/div/div/div/span[1]').text
+        # company_name = self.driver.find_element(
+        #     By.XPATH, '//*[@id="main"]/div/app-application-report/div/div[2]/div/div[1]/div/div/div/div/div/span[1]').text
         status = self.driver.find_element(
             By.XPATH, '//*[@id="main"]/div/app-application-report/div/div[2]/div/div[3]/div/div[1]/div[7]/div/div/div[2]/div/label').text
 
@@ -83,7 +83,7 @@ class MeroShare:
         self.driver.find_element(
             By.XPATH, '//*[@id="main"]/div/app-application-report/div/div[1]/div/div[1]/div/div/div/button/i').click()
 
-        return(company_name, status)
+        return status
 
     def check_ipo(self, row_no):
         sleep(1)

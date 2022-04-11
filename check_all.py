@@ -1,9 +1,11 @@
-from cgitb import reset
 from ipobot import MeroShare
 import json
+import csv
 
 # Number of Kitta than you want to apply. (Default 10)
 APPLIED_KITTA = 10
+
+ROW_NO = 5
 # Call Meroshare class from ipobot
 meroshare = MeroShare()
 
@@ -13,27 +15,19 @@ file = open("data.json")
 data = json.load(file)
 
 
-result = []
 for i in range(len(data)):
-    user = data[i]
+    try:
     # Login
-    meroshare.login(user["DP"], user["Username"], user["Password"])
+        user = data[i]
+        meroshare.login(user["DP"], user["Username"], user["Password"])
 
-    # Fill the IPO Form and click proceed
-    meroshare.check_ipo(1)
-    result += meroshare.get_result()
-
-    # Logout
-    meroshare.logout()
-
-print(result)
-
-# user = data[1]
-# # Login
-# meroshare.login(user["DP"], user["Username"], user["Password"])
-
-# # Fill the IPO Form and click proceed
-# meroshare.check_ipo(1)
-# result = meroshare.get_result()
+        # Fill the IPO Form and click proceed
+        meroshare.check_ipo(ROW_NO)
+        result = meroshare.get_result()
+        print(f"{user['Name']}------------{result}")
+        # Logout
+        meroshare.logout()
+    except:
+        print(f"Error on {user['Name']}")
 
 
