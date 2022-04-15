@@ -23,6 +23,7 @@ pip install selenium
 
 ### To check all IPO
 
--python3 check_all.py
+-python3 check_all.py 1 OR 2 OR 3 OR 4
 
-The script check using row_no, That can be changed according to the number.
+
+The script check using row_no, That can be changed according to the row in which meroshare shows application report.
