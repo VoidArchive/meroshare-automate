@@ -1,4 +1,3 @@
-from os import stat
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -9,8 +8,9 @@ from time import sleep
 class MeroShare:
 
     def __init__(self) -> None:
-        s = Service('/home/voidarchive/chromedriver_linux64/chromedriver')
-        self.driver = webdriver.Chrome(service=s)
+        option = webdriver.ChromeOptions()
+        option.binary_location = r'/usr/bin/brave-browser'
+        self.driver = webdriver.Chrome(executable_path=r'/home/archive/chromedriver_linux64/chromedriver', options=option)
         self.driver.maximize_window()
 
     def login(self, dp_name, user_name, password):
