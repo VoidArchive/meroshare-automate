@@ -30,7 +30,7 @@ for i in range(len(data)):
         print(f"{user['Name']}------------{result}")
         # Logout
         meroshare.logout()
-    except:
-        print(f"Error on {user['Name']}")
+    except Exception as e:
+        print(f"Error on {user['Name']} ")
 
 
