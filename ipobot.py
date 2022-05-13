@@ -29,11 +29,12 @@ class MeroShare:
         user_password = self.driver.find_element(By.ID, 'password')
         user_password.send_keys(password, Keys.ENTER)
 
-    def find_ipo(self):
+    def find_ipo(self, row):
         sleep(1)
         self.driver.get('https://meroshare.cdsc.com.np/#/asba')
         sleep(1)
-        self.driver.find_element(By.CLASS_NAME, 'btn-issue').click()
+        ipos = self.driver.find_elements(By.CLASS_NAME, 'btn-issue')
+        ipos[row].click()
 
     def apply_ipo(self, applied_unit, crn):
         sleep(1)
