@@ -1,4 +1,4 @@
-from ipobot import MeroShare
+from scripts.helper import MeroShare
 import json
 import sys
 
