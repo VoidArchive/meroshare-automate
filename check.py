@@ -1,5 +1,5 @@
 from sqlite3 import Row
-from scripts.helper import MeroShare
+from meroshare import MeroShare
 import json
 import sys
 
@@ -20,7 +20,7 @@ print(ROW_NO)
 
 for i in range(len(data)):
     try:
-    # Login
+        # Login
         user = data[i]
         meroshare.login(user["DP"], user["Username"], user["Password"])
 
@@ -32,5 +32,3 @@ for i in range(len(data)):
         meroshare.logout()
     except Exception as e:
         print(f"Error on {user['Name']} ")
-
-

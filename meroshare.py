@@ -1,15 +1,17 @@
+
 from selenium import webdriver
+from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from time import sleep
 
 
 class MeroShare:
-
     def __init__(self) -> None:
         option = webdriver.ChromeOptions()
         option.binary_location = r'/usr/bin/brave-browser'
-        self.driver = webdriver.Chrome(executable_path=r'/home/archive/chromedriver_linux64/chromedriver', options=option)
+        self.driver = webdriver.Chrome(
+            executable_path=r'/home/void/chromedriver_linux64/chromedriver', options=option)
         self.driver.maximize_window()
 
     def login(self, dp_name, user_name, password):
@@ -26,6 +28,7 @@ class MeroShare:
         username.send_keys(user_name)
         # Password
         user_password = self.driver.find_element(By.ID, 'password')
+
         user_password.send_keys(password, Keys.ENTER)
 
     def find_ipo(self, row):
@@ -85,13 +88,12 @@ class MeroShare:
 
         return status
 
-    def check_ipo(self, row_no):
-        sleep(1)
-        self.driver.get('https://meroshare.cdsc.com.np/#/asba')
-        self.driver.find_element(
-            By.XPATH, '//*[@id="main"]/div/app-asba/div/div[1]/div/div/ul/li[3]/a/span').click()
+    # def check_ipo(self, row_no):
+    #     sleep(1)
+    #     self.driver.get('https://meroshare.cdsc.com.np/#/asba')
+    #     self.driver.find_element(
+    #         By.XPATH, '//*[@id="main"]/div/app-asba/div/div[1]/div/div/ul/li[3]/a/span').click()
 
-        sleep(1)
-        self.driver.find_element(
-            By.XPATH, f'//*[@id="main"]/div/app-asba/div/div[2]/app-share-list/div/div/div[2]/div[1]/div[{str(row_no)}]/div/div[2]/div/div[3]/button').click()
-       
+    #     sleep(1)
+    #     self.driver.find_element(
+    #         By.XPATH, f'//*[@id="main"]/div/app-asba/div/div[2]/app-share-list/div/div/div[2]/div[1]/div[{str(row_no)}]/div/div[2]/div/div[3]/button').click()

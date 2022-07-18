@@ -1,4 +1,4 @@
-from scripts.helper import MeroShare
+from meroshare import MeroShare
 import json
 import sys
 
