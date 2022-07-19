@@ -7,6 +7,7 @@ from selenium.common.exceptions import TimeoutException
 
 
 MEROSHARE_URL = 'https://meroshare.cdsc.com.np'
+APPLY_UNIT = 10
 
 
 class MeroShare:
@@ -46,23 +47,80 @@ class MeroShare:
             self.wait.until(EC.presence_of_element_located(
                 (By.CLASS_NAME, 'user-profile-name')))
 
-            print(f'Loged In: {name}')
+            print(f'Loged In By: {name}')
         except TimeoutException:
             print(f'Could not Log In: {name}')
             self.browser.quit()
             self.browser.close()
 
-    def get_offering(self):
+    def check_offering(self):
+        # This fuction depends on login function as you cannot view ipo without loging In.
         try:
             self.browser.get(f'{MEROSHARE_URL}/#/asba')
             # Check If My ASBA has been loaded
-            company_list = self.wait.until(EC.presence_of_all_elements_located(
-                (By.CLASS_NAME, 'company-list')))
+            company_name = self.wait.until(EC.presence_of_all_elements_located(
+                (By.CLASS_NAME, 'company-name')))
 
-            a = company_list[0].text.split()
-            print(a)
-
+            print(
+                "|---------------------------------------------------------------------------------------------------------------------|")
+            for i in range(len(company_name)):
+                offering = company_name[i].text.split('\n')
+                offering = "---".join(
+                    offering)
+                print(f"|---{offering}-----------------------| Enter: {i}")
+            print(
+                "|---------------------------------------------------------------------------------------------------------------------|")
         except TimeoutException:
-            print('Could not find MY ASBA')
+            print('No offering available')
             self.browser.quit()
             # self.browser.close()
+
+    def get_offering(self, offer_row):
+        # The maybe "Apply", "Edit", Or None
+
+        offering_btn = self.wait.until(
+            EC.presence_of_all_elements_located((By.CLASS_NAME, 'btn-issue')))
+
+        if offering_btn[offer_row].text == "Apply":
+            offering_btn[offer_row].click()
+        elif offering_btn[offer_row].text == "Edit":
+            print("You have already applied to this IPO.")
+        else:
+            print("You are not allowed to apply for this IPO.")
+
+    def apply_offering(self, crn, pin):
+
+        # Select Bank
+        bank = self.wait.until(
+            EC.presence_of_element_located((By.ID, 'selectBank')))
+        bank.click()
+        bank.send_keys(Keys.ARROW_DOWN)
+        bank.send_keys(Keys.ARROW_DOWN)
+        bank.send_keys(Keys.ENTER)
+
+        # Apply share unit -> 10 default
+        apply_unit = self.browser.find_element(By.ID, 'appliedKitta')
+        # Clear the field just in case
+        apply_unit.clear()
+        apply_unit.send_keys(APPLY_UNIT)
+
+        # Enter CRN
+        self.browser.find_element(By.ID, 'crnNumber').send_keys(crn)
+
+        # Check the disclaimer
+        self.browser.find_element(By.ID, 'disclaimer').click()
+
+        # Wait for Proceed Button to be Enable
+        self.wait.until(EC.presence_of_element_located(
+            (By.XPATH, '//*[@id="main"]/div/app-issue/div/wizard/div/wizard-step[1]/form/div[2]/div/div[5]/div[2]/div/button[1]'))).click()
+
+        # Enter Transaction Pin
+        self.wait.until(EC.presence_of_element_located(
+            (By.ID, 'transactionPIN'))).send_keys(pin)
+        # Wait for Apply Button to be Enabled TODO: ADD .click()
+        self.wait.until(EC.presence_of_element_located(
+            (By.XPATH, '//*[@id="main"]/div/app-issue/div/wizard/div/wizard-step[2]/div[2]/div/form/div[2]/div/div/div/button[1]')))
+
+    def logout(self):
+        self.wait.until(EC.presence_of_element_located(
+            (By.XPATH, '/html/body/app-dashboard/header/div[2]/div/div/div/ul/li[1]/a'))).click()

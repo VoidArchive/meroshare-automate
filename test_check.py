@@ -9,4 +9,7 @@ data = data[0]
 
 meroshare.login(name=data['Name'], depository=data['DP'],
                 username=data['Username'], password=data['Password'])
-meroshare.get_offering()
+meroshare.check_offering()
+meroshare.get_offering(0)
+meroshare.apply_offering(data['CRN'], data['PIN'])
+meroshare.logout()
