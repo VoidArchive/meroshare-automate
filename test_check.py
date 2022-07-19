@@ -1,5 +1,5 @@
 import json
-from meroshare_copy import MeroShare
+from meroshare import MeroShare
 
 
 # [Loads Name, DP, Username, Password, CRN, BOID, PIN]
@@ -9,7 +9,9 @@ data = data[0]
 
 meroshare.login(name=data['Name'], depository=data['DP'],
                 username=data['Username'], password=data['Password'])
-meroshare.check_offering()
-meroshare.get_offering(0)
-meroshare.apply_offering(data['CRN'], data['PIN'])
-meroshare.logout()
+meroshare.show_offering()
+# meroshare.get_offering(0)
+# meroshare.apply_offering(data['CRN'], data['PIN'])
+# meroshare.logout()
+a = meroshare.get_result(0)
+print(a)
