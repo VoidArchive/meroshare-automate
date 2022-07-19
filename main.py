@@ -34,15 +34,33 @@ while users:
                     password=user['Password']
                 )
 
-                print(meroshare.get_result(0))
+                print(meroshare.get_result(offer_row=0))
                 meroshare.logout()
             except:
                 print(f"Couldn't Log In on: {user['Name']}")
 
+        meroshare.close()
         break
 
     elif user_input.lower() == 'a':
         meroshare = MeroShare()
+
+        for user in users:
+            try:
+                meroshare.login(
+                    name=user['Name'],
+                    depository=user['DP'],
+                    username=user['Username'],
+                    password=user['Password']
+                )
+                meroshare.show_offering()
+                meroshare.get_offering(offer_row=0)
+                meroshare.apply_offering(crn=user['CRN'], pin=user['PIN'])
+                meroshare.logout()
+
+            except:
+                print("-_- Something wrong??")
+        meroshare.close()
         break
     else:
         print("Please Enter a or c for apply and check")

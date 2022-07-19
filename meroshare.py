@@ -66,8 +66,6 @@ class MeroShare:
                 print(f"{i}. {offering}")
         except TimeoutException:
             print('No offering available')
-            self.browser.quit()
-            # self.browser.close()
 
     def get_offering(self, offer_row):
         # The maybe "Apply", "Edit", Or None
@@ -105,6 +103,7 @@ class MeroShare:
         self.browser.find_element(By.ID, 'disclaimer').click()
 
         # Wait for Proceed Button to be Enable
+        sleep(1)
         self.wait.until(EC.presence_of_element_located(
             (By.XPATH, '//*[@id="main"]/div/app-issue/div/wizard/div/wizard-step[1]/form/div[2]/div/div[5]/div[2]/div/button[1]'))).click()
 
@@ -136,3 +135,7 @@ class MeroShare:
             (By.XPATH, '//*[@id="main"]/div/app-application-report/div/div[2]/div/div[3]/div/div[1]/div[7]/div/div/div[2]/div/label')))
 
         return f'{company_name.text}: {status.text}'
+
+    def close(self):
+        self.browser.close()
+        self.browser.quit()
