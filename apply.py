@@ -1,4 +1,4 @@
-from ipobot import MeroShare
+from meroshare import MeroShare
 import json
 import sys
 
