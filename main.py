@@ -17,13 +17,13 @@ asci_art = '''
 users = json.load(open('data/data.json', encoding='utf-8-sig'))
 
 print(Fore.MAGENTA + asci_art)
-print(Fore.MAGENTA + 'Welcome to IPO Automation for Meroshare')
+print(Fore.BLUE + 'Welcome to IPO Automation for Meroshare')
 
 
 while users:
+    meroshare = MeroShare()
     user_input = input('Enter: Apply(a) or Check (c): ')
     if user_input.lower() == 'c':
-        meroshare = MeroShare()
 
         for user in users:
             try:
@@ -43,9 +43,8 @@ while users:
         break
 
     elif user_input.lower() == 'a':
-        meroshare = MeroShare()
 
-        for user in users:
+        for user in users[3:]:
             try:
                 meroshare.login(
                     name=user['Name'],
@@ -54,12 +53,16 @@ while users:
                     password=user['Password']
                 )
                 meroshare.show_offering()
-                meroshare.get_offering(offer_row=0)
+                # Comment this line if you're sure all account have same row structure, bonus or right share are provided.
+                row = int(input("Enter the row no: "))
+                meroshare.get_offering(offer_row=row)
                 meroshare.apply_offering(crn=user['CRN'], pin=user['PIN'])
                 meroshare.logout()
 
             except:
-                print("-_- Something wrong??")
+                # Bug? If a single loop give error. All loop stop.
+                print(f"-_- Something wrong with user: {user['Name']}")
+                break
         meroshare.close()
         break
     else:

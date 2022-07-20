@@ -111,8 +111,10 @@ class MeroShare:
         self.wait.until(EC.presence_of_element_located(
             (By.ID, 'transactionPIN'))).send_keys(pin)
         # Wait for Apply Button to be Enabled TODO: ADD .click()
+        sleep(1)
         self.wait.until(EC.presence_of_element_located(
-            (By.XPATH, '//*[@id="main"]/div/app-issue/div/wizard/div/wizard-step[2]/div[2]/div/form/div[2]/div/div/div/button[1]')))
+            (By.XPATH, '//*[@id="main"]/div/app-issue/div/wizard/div/wizard-step[2]/div[2]/div/form/div[2]/div/div/div/button[1]'))).click()
+        sleep(1)
 
     def logout(self):
         self.wait.until(EC.presence_of_element_located(
