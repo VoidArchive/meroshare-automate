@@ -1,6 +1,6 @@
-data/
+# data/
 data.json
-example.json
+data.csv
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

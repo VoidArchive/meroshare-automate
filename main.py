@@ -14,6 +14,7 @@ asci_art = '''
      /:::::::::::\" _  "
     /:::=======:::\`\`\
 '''
+# Remove encoding if json file is not encoded in utf-6
 users = json.load(open('data/data.json', encoding='utf-8-sig'))
 
 print(Fore.MAGENTA + asci_art)
@@ -37,14 +38,15 @@ while users:
                 print(meroshare.get_result(offer_row=0))
                 meroshare.logout()
             except:
-                print(f"Couldn't Log In on: {user['Name']}")
+                print(f"Could not Log In on: {user['Name']}")
+                break
 
         meroshare.close()
         break
 
     elif user_input.lower() == 'a':
 
-        for user in users[3:]:
+        for user in users:
             try:
                 meroshare.login(
                     name=user['Name'],
@@ -53,6 +55,7 @@ while users:
                     password=user['Password']
                 )
                 meroshare.show_offering()
+                row = 0
                 # Comment this line if you're sure all account have same row structure, bonus or right share are provided.
                 row = int(input("Enter the row no: "))
                 meroshare.get_offering(offer_row=row)
@@ -60,7 +63,7 @@ while users:
                 meroshare.logout()
 
             except:
-                # Bug? If a single loop give error. All loop stop.
+                # Bug? Sometimes, If a single loop give error. All loop stop. Why???
                 print(f"-_- Something wrong with user: {user['Name']}")
                 break
         meroshare.close()
